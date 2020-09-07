@@ -21,7 +21,7 @@ Encrypt: python3 main.py -p "C:\users\jimmy\desktop\test_ransomware" -e
 Decrypt: python3 main.py -p "C:\users\jimmy\desktop\test_ransomware" -d
 ```
 
-Linux / MacOS with specific path:
+Linux / macOS with specific path:
 ```
 Encrypt: python3 main.py -p "/home/jimmy/test_ransomware" -e
 Decrypt: python3 main.py -p "/home/jimmy/test_ransomware" -d
@@ -46,16 +46,17 @@ Encrypt: main.exe -p "C:\users\jimmy\desktop\test_ransomware" -e
 Decrypt: main.exe -p "C:\users\jimmy\desktop\test_ransomware" -d
 ```
 
-Linux / MacOS with specific path:
+Linux / macOS with specific path:
 ```
 Encrypt: ./main -p "/home/jimmy/test_ransomware" -e
 Decrypt: ./main -p "/home/jimmy/test_ransomware" -d
 ```
 
 # Additional Features
-* RSA asymmetric encryption of the AES keyif s
-* Autodetects Windows, Linux or MacOS
-* Fixed handling of renaming files with a ransomware extension
+* Added RSA asymmetric encryption of the AES key.
+* Added Autodetects Windows, Linux or macOS.
+* Added path argument to specify a specific directory.
+* Fixed handling of renaming files with a adding/removing ransomware extension
 
 # Credit
 Credit goes to deadPix3l (https://github.com/deadPix3l/CryptSky) and contributers.
