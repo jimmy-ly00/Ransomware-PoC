@@ -40,6 +40,18 @@ pyinstaller --onefile main.py or py -m PyInstaller --onefile main.py
 ```
 See `/bin` folder for binaries.
 
+Windows with specific path:
+```
+Encrypt: main.exe -p "C:\users\jimmy\desktop\test_ransomware" -e
+Decrypt: main.exe -p "C:\users\jimmy\desktop\test_ransomware" -d
+```
+
+Linux / MacOS with specific path:
+```
+Encrypt: ./main -p "/home/jimmy/test_ransomware" -e
+Decrypt: ./main -p "/home/jimmy/test_ransomware" -d
+```
+
 # Additional Features
 * RSA asymmetric encryption of the AES keyif s
 * Autodetects Windows, Linux or MacOS
