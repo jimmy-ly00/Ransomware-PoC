@@ -4,7 +4,7 @@ A simple python ransomware PoC that can be used for Atomic Red Team testing for 
 # How to run
 Install dependencies:
 ```bash
-pip install pycrypto
+pip3 install pycryptodome
 ```
 
 Run:
@@ -21,6 +21,7 @@ NB: As this is simply a PoC for Atomic Red Team, there is no real need to change
 
 # Additional Features
 * RSA asymmetric encryption of the AES key
+* Autodetects Windows, Linux or MacOS
 * Fixed handling of renaming files with a ransomware extension
 
 # Credit
