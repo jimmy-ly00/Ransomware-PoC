@@ -7,10 +7,22 @@ Install dependencies:
 pip3 install pycryptodome
 ```
 
-Run:
+Default:
 ```
-Encrypt: python3 main.py
+Encrypt: python3 main.py -e
 Decrypt: python3 main.py -d
+```
+
+Windows with specific path:
+```
+Encrypt: python3 main.py -p C:\users\jimmy\desktop\test_ransomware -e
+Decrypt: python3 main.py -p C:\users\jimmy\desktop\test_ransomware -d
+```
+
+Linux / MacOS with specific path:
+```
+Encrypt: python3 main.py -p C:\users\jimmy\desktop\test_ransomware -e
+Decrypt: python3 main.py -p C:\users\jimmy\desktop\test_ransomware -p
 ```
 
 Variables to change
@@ -24,6 +36,7 @@ Use pyinstaller:
 pip3 install pyinstaller
 pyinstaller --onefile main.py or py -m PyInstaller --onefile main.py
 ```
+See `/bin` folder for binaries.
 
 # Additional Features
 * RSA asymmetric encryption of the AES keyif s
