@@ -14,7 +14,6 @@ Decrypt: python3 main.py -d
 ```
 
 Variables to change
-* Path
 * Ransomware Extension [default: .wasted for WastedLocker]
 
 NB: As this is simply a PoC for Atomic Red Team, there is no real need to change the keys or other variables.
@@ -27,12 +26,9 @@ pyinstaller --onefile main.py or py -m PyInstaller --onefile main.py
 ```
 
 # Additional Features
-* RSA asymmetric encryption of the AES key
+* RSA asymmetric encryption of the AES keyif s
 * Autodetects Windows, Linux or MacOS
 * Fixed handling of renaming files with a ransomware extension
-
-# TODO
-* Add path and extensions as arguments
 
 # Credit
 Credit goes to deadPix3l (https://github.com/deadPix3l/CryptSky) and contributers.
