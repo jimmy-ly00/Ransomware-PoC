@@ -52,6 +52,12 @@ Encrypt: ./main -p "/home/jimmy/test_ransomware" -e
 Decrypt: ./main -p "/home/jimmy/test_ransomware" -d
 ```
 
+# Demo
+![Ransomware-PoC]("https://github.com/jimmy-ly00/Ransomware-PoC/blob/master/demo/download.gif?raw=true")
+
+https://imgur.com/HhiAYc0
+
+
 # Additional Features
 * Added RSA asymmetric encryption of the AES key.
 * Added Autodetects Windows, Linux or macOS.
