@@ -21,11 +21,11 @@ Decrypt: python3 main.py -p C:\users\jimmy\desktop\test_ransomware -d
 
 Linux / MacOS with specific path:
 ```
-Encrypt: python3 main.py -p C:\users\jimmy\desktop\test_ransomware -e
-Decrypt: python3 main.py -p C:\users\jimmy\desktop\test_ransomware -p
+Encrypt: python3 main.py -p /home/jimmy/test_ransomware -e
+Decrypt: python3 main.py -p /home/jimmy/test_ransomware -p
 ```
 
-Variables to change
+Variables to change:
 * Ransomware Extension [default: .wasted for WastedLocker]
 
 NB: As this is simply a PoC for Atomic Red Team, there is no real need to change the keys or other variables.
