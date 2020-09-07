@@ -19,6 +19,13 @@ Variables to change
 
 NB: As this is simply a PoC for Atomic Red Team, there is no real need to change the keys or other variables.
 
+# Standalone Executable
+Use pyinstaller:
+```bash
+pip3 install pyinstaller
+pyinstaller --onefile main.py or py -m PyInstaller --onefile main.py
+```
+
 # Additional Features
 * RSA asymmetric encryption of the AES key
 * Autodetects Windows, Linux or MacOS
