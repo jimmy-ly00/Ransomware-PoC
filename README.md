@@ -31,5 +31,8 @@ pyinstaller --onefile main.py or py -m PyInstaller --onefile main.py
 * Autodetects Windows, Linux or MacOS
 * Fixed handling of renaming files with a ransomware extension
 
+# TODO
+* Add path and extensions as arguments
+
 # Credit
 Credit goes to deadPix3l (https://github.com/deadPix3l/CryptSky) and contributers.
