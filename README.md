@@ -3,6 +3,10 @@ A simple python ransomware PoC that can be used for Atomic Red Team testing for 
 
 **Warning**: Be extra careful of running the program as it will modify files. Ensure the path is correct and be wary in running with administrative privileges.
 
+# Supported
+* python3
+* Windows, Linux and macOS
+
 # How to run
 Install dependencies:
 ```bash
@@ -46,10 +50,16 @@ Encrypt: main.exe -p "C:\users\jimmy\desktop\test_ransomware" -e
 Decrypt: main.exe -p "C:\users\jimmy\desktop\test_ransomware" -d
 ```
 
-Linux / macOS with specific path:
+Linux with specific path:
 ```
 Encrypt: ./main -p "/home/jimmy/test_ransomware" -e
 Decrypt: ./main -p "/home/jimmy/test_ransomware" -d
+```
+
+macOS with specific path:
+```
+Encrypt: ./main_macos -p "/home/jimmy/test_ransomware" -e
+Decrypt: ./main_macos -p "/home/jimmy/test_ransomware" -d
 ```
 
 # Demo
