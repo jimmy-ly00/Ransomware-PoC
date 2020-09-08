@@ -4,7 +4,7 @@ A simple python ransomware PoC that can be used for Atomic Red Team testing for 
 **Warning**: Be extra careful of running the program as it will modify files. Ensure the path is correct and be wary in running with administrative privileges.
 
 # Supported
-* python3
+* python3 (python2 for Linux/macOS should work)
 * Windows, Linux and macOS
 
 # How to run
@@ -37,11 +37,25 @@ Variables to change:
 NB: As this is simply a PoC for Atomic Red Team, there is no real need to change the keys or other variables.
 
 # Standalone Executable
-Use pyinstaller:
+Tested with python 2.7 with pyinstaller 3.6 and python 3.7 with pyinstaller 4.0. Please note that python 3.8 with pyinstaller 4.0 have known issues as this was incompatible with macOS.
+
+For Windows and Linux
 ```bash
 pip3 install pyinstaller
 pyinstaller --onefile main.py or py -m PyInstaller --onefile main.py
 ```
+
+For macOS
+```
+(python 3.7)
+python3 -m pip install  pyinstaller
+pyinstaller --onefile main.py
+
+(python 2.7)
+pip install -I pyinstaller==3.6
+python -m PyInstaller --onefile main.py
+```
+
 See `/bin` folder for binaries.
 
 Windows with specific path:
@@ -58,8 +72,8 @@ Decrypt: ./main -p "/home/jimmy/test_ransomware" -d
 
 macOS with specific path:
 ```
-Encrypt: ./main_macos -p "/home/jimmy/test_ransomware" -e
-Decrypt: ./main_macos -p "/home/jimmy/test_ransomware" -d
+Encrypt: ./main_macos_py2 -p "/home/jimmy/test_ransomware" -e
+Decrypt: ./main_macos_py2 -p "/home/jimmy/test_ransomware" -d
 ```
 
 # Demo
