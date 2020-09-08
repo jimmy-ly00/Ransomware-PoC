@@ -72,8 +72,8 @@ Decrypt: ./main -p "/home/jimmy/test_ransomware" -d
 
 macOS with specific path:
 ```
-Encrypt: ./main_macos_py2 -p "/home/jimmy/test_ransomware" -e
-Decrypt: ./main_macos_py2 -p "/home/jimmy/test_ransomware" -d
+Encrypt: ./main_macos_py2 -p "/Users/jimmy/test_ransomware" -e
+Decrypt: ./main_macos_py2 -p "/Users/jimmy/test_ransomware" -d
 ```
 
 # Demo
