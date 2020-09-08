@@ -39,13 +39,13 @@ NB: As this is simply a PoC for Atomic Red Team, there is no real need to change
 # Standalone Executable
 Tested with python 2.7 with pyinstaller 3.6 and python 3.7 with pyinstaller 4.0. Please note that python 3.8 with pyinstaller 4.0 have known issues as this was incompatible with macOS.
 
-For Windows and Linux
+Windows and Linux:
 ```bash
 pip3 install pyinstaller
 pyinstaller --onefile main.py or py -m PyInstaller --onefile main.py
 ```
 
-For macOS
+macOS:
 ```
 (python 3.7)
 python3 -m pip install  pyinstaller
