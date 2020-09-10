@@ -83,7 +83,7 @@ Decrypt: ./main_macos_py2 -p "/Users/jimmy/test_ransomware" -d
 * Added RSA asymmetric encryption of the AES key.
 * Added autodetection on Windows, Linux or macOS.
 * Added path argument to specify a directory.
-* Fixed handling of renaming files with a adding/removing ransomware extension
+* Fixed handling of renaming files with adding/removing of the ransomware extension.
 
 # Credit
 Credit goes to deadPix3l (https://github.com/deadPix3l/CryptSky) and contributers.
