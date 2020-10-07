@@ -91,4 +91,5 @@ Decrypt: ./main_macos_py2 -p "/Users/jimmy/test_ransomware" -d
 * Fixed handling of renaming files with adding/removing of the ransomware extension.
 
 # Credit
-Credit goes to deadPix3l (https://github.com/deadPix3l/CryptSky) and contributers.
+- [CryptSky](https://github.com/deadPix3l/CryptSky) (deadPix3l and contributers) for base project
+- [Demonware (Cerberus)](https://github.com/StrangerealIntel/Cerberus/blob/abd7d069edc2009a33ae1102f54abc935452e766/Demonware/2020-09-15/Demonware.py)  (StrangerealIntel) for ransomeware image and exfiltration
