@@ -81,8 +81,14 @@ def main():
     args = parse_args()
     encrypt = args.encrypt
     decrypt = args.decrypt
+    
     absolute_path = str(args.path)
-
+    
+    # Force one click and comment out args above
+    # absolute_path = "None"
+    # encrypt = True 
+    # decrypt = False
+    
     if absolute_path != 'None':
         startdirs = [absolute_path]
     else:
