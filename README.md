@@ -57,6 +57,11 @@ Decrypt: python3 main.py -p "/home/jimmy/test_ransomware" -d
 
 Variables to change:
 * Ransomware Extension [default: .wasted for WastedLocker]
+* AES Key
+* RSA Public key
+* RSA Private key (to be removed). Only used for decryptor.
+* Domain and port for exfiltration (main_v2)
+* 
 
 NB: As this is simply a PoC for Atomic Red Team, there is no real need to change the keys or other variables.
 
@@ -72,7 +77,7 @@ pyinstaller --onefile main_v2.py or py -m PyInstaller --onefile main_v2.py
 macOS:
 ```
 (python 3.7)
-python3 -m pip install  pyinstaller
+python3 -m pip install pyinstaller
 pyinstaller --onefile main.py
 
 (python 2.7)
@@ -155,5 +160,5 @@ startdirs = [os.environ['USERPROFILE'] + '\\Desktop',
 * Added exfiltration of key back to C2.
 
 # Credit
-- [CryptSky](https://github.com/deadPix3l/CryptSky) (deadPix3l and contributers) for base project
-- [Demonware (Cerberus)](https://github.com/StrangerealIntel/Cerberus/blob/abd7d069edc2009a33ae1102f54abc935452e766/Demonware/2020-09-15/Demonware.py)  (StrangerealIntel) for ransomeware image and exfiltration
+- [CryptSky](https://github.com/deadPix3l/CryptSky) (deadPix3l and contributors) for base project
+- [Demonware (Cerberus)](https://github.com/StrangerealIntel/Cerberus/blob/abd7d069edc2009a33ae1102f54abc935452e766/Demonware/2020-09-15/Demonware.py)  (StrangerealIntel) for ransom image and exfiltration
