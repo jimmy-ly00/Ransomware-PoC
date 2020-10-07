@@ -20,7 +20,6 @@ Version 1: main.py
 
 Version 2: main_v2.py
 - Advanced version
-- Only works with Windows and Linux (no tkinter on macOS)
 - Ransom note pop up
 - Exfiltrate key back to C2 given domain and port
 
