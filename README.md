@@ -1,5 +1,5 @@
 # Ransomware-PoC
-A simple python ransomware PoC that can be used for Atomic Red Team testing for **ATT&CK Technique: Data Encrypted for Impact (T1486)**. The project is built off [CryptSky](https://github.com/deadPix3l/CryptSky) and full credits goes to deadPix3l for his code. The updated code demonstrates a typical ransomware flow and it is just one of many ways to perform ransomware encryption.
+A simple python ransomware PoC that can be used for Atomic Red Team: **ATT&CK Technique: Data Encrypted for Impact (T1486)**. The project is built off [CryptSky](https://github.com/deadPix3l/CryptSky) and full credits goes to deadPix3l for his code. The updated code demonstrates a typical ransomware flow and it is just one of many ways to perform ransomware encryption.
 
  TLDR:
  1. Generates AES key to encrypt local file (hardcoded in PoC).
