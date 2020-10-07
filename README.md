@@ -1,11 +1,10 @@
 # Ransomware-PoC
-A simple python ransomware PoC that can be used for Atomic Red Team testing for **ATT&CK Technique: Data Encrypted for Impact (T1486)**. The project is built off [CryptSky](https://github.com/deadPix3l/CryptSky) and full credits goes to deadPix3l for his code. The updated code demonstrates a typical ransomware flow. 
+A simple python ransomware PoC that can be used for Atomic Red Team testing for **ATT&CK Technique: Data Encrypted for Impact (T1486)**. The project is built off [CryptSky](https://github.com/deadPix3l/CryptSky) and full credits goes to deadPix3l for his code. The updated code demonstrates a typical ransomware flow and it is just one of many ways to perform ransomware encryption.
 
  TLDR:
  1. Generates AES key to encrypt local file (hardcoded in PoC).
- 2. Victim generates RSA public and private key. The RSA public key encrypts the AES key.
- 3. The attacker's embedded RSA public key (intentionally hardcoded in PoC) is used to encrypt the victim's RSA private key. This is sent to the C2 server or provided by the victim.
- 4. Ransomnote is shown. When the ransom is paid, a decryptor is provided. 
+ 2. The attacker's embedded RSA public key (intentionally hardcoded in PoC) is used to encrypt the AES key. The private key is already stored in the attacker's C2 server. The encrypted text is sent to the C2 server and displayed for the victim.
+ 3. Ransom note is shown. When the ransom is paid, a decryptor is provided. 
  
 **Warning**: Be extra careful of running the program as it will modify files. Ensure the path is correct and be wary in running with administrative privileges.
 
