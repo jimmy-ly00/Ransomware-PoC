@@ -53,7 +53,6 @@ Variables to change:
 * RSA Public key
 * RSA Private key (to be removed). Only used for decryptor.
 * Domain and port for exfiltration (main_v2)
-* 
 
 NB: As this is simply a PoC for Atomic Red Team, there is no real need to change the keys or other variables.
 
