@@ -78,6 +78,7 @@ python -m PyInstaller --onefile main_v2.py
 
 See `/bin` folder for binaries.
 
+
 Windows with specific path:
 ```
 Encrypt: main_v2.exe -p "C:\users\jimmy\desktop\test_ransomware" -e
