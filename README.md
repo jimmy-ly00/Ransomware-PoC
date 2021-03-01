@@ -76,7 +76,10 @@ pip install -I pyinstaller==3.6
 python -m PyInstaller --onefile main_v2.py
 ```
 
+**UPDATE**: These are out-of-date
+
 See `/bin` folder for binaries.
+
 
 Windows with specific path:
 ```
